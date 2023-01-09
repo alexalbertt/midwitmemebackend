@@ -24,7 +24,7 @@ app.post('/add-tweet', (req, res) => {
   const { tweetId, tweetUrl, tweetAuthor } = req.body;
   console.log("Recieved info: TweetID: " + tweetId + " TweetURL: " +tweetUrl + " TweetAuthor: " + tweetAuthor);
   // Insert the tweet into the database
-  connection.query(
+  client.query(
     'INSERT INTO tweets (tweet_id, tweet_url, tweet_author) VALUES (?, ?, ?)',
     [tweetId, tweetUrl, tweetAuthor],
     (error, results) => {
@@ -39,7 +39,7 @@ app.post('/add-tweet', (req, res) => {
 
 app.get('/tweets', (req, res) => {
   // Retrieve all the tweets from the database
-  connection.query('SELECT * FROM tweets', (error, results) => {
+  client.query('SELECT * FROM tweets', (error, results) => {
     if (error) {
       res.status(500).send(error.message);
     } else {
