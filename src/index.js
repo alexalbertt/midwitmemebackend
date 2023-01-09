@@ -14,6 +14,11 @@ const client = new Client({
 
 client.connect();
 
+app.get("/", (req, res) => {
+  //when we get an http get request to the root/homepage
+  res.send("Hello World");
+});
+
 app.post('/add-tweet', (req, res) => {
   // Extract the tweet data from the request body
   const { tweetId, tweetUrl, tweetAuthor } = req.body;
