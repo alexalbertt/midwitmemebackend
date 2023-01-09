@@ -21,7 +21,7 @@ app.post('/add-tweet', (req, res) => {
   // Insert the tweet into the database
   connection.query(
     'INSERT INTO tweets (tweet_id, tweet_url, tweet_author) VALUES (?, ?)',
-    [tweetId, tweetUrl],
+    [tweetId, tweetUrl, tweetAuthor],
     (error, results) => {
       if (error) {
         res.status(500).send(error.message);
