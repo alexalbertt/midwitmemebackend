@@ -4,10 +4,11 @@
   "description": "Backend service for connecting to DB",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node index.js",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "heroku-run-build-script": true,
   "author": "Alex Albert",
   "license": "ISC",
   "dependencies": {
