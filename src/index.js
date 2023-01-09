@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 app.post('/add-tweet', (req, res) => {
   // Extract the tweet data from the request body
   const { tweetId, tweetUrl, tweetAuthor } = req.body;
+  console.log("Request body: " + req.body);
   console.log("Recieved info: TweetID: " + tweetId + " TweetURL: " +tweetUrl + " TweetAuthor: " + tweetAuthor);
   // Insert the tweet into the database
   client.query(
