@@ -21,12 +21,12 @@ app.get("/", (req, res) => {
 
 app.post('/add-tweet', (req, res) => {
   // Extract the tweet data from the request body
-  const { tweetId, tweetUrl, tweetAuthor } = req.body;
+  const { tweetId, tweetUrl, tweetAuthor, tweetTagAuthor, tweetTagId } = req.body;
   console.log("Request body: " + req.body);
-  console.log("Recieved info: TweetID: " + tweetId + " TweetURL: " +tweetUrl + " TweetAuthor: " + tweetAuthor);
+  console.log("Recieved info: TweetID: " + tweetId + " TweetURL: " +tweetUrl + " TweetAuthor: " + tweetAuthor + " TweetTagAuthor: " + tweetTagAuthor + " TweetTagID: " + tweetTagId);
   // Insert the tweet into the database
   client.query(
-    `INSERT INTO tweets (tweet_id, tweet_url, tweet_author) VALUES ('${tweetId}', '${tweetUrl}', '${tweetAuthor}')`,
+    `INSERT INTO tweets (tweet_id, tweet_url, tweet_author, tweet_tag_author, tweet_tag_id) VALUES ('${tweetId}', '${tweetUrl}', '${tweetAuthor}', '${tweetTagAuthor}', '${tweetTagId}')`,
     (error, results) => {
       if (error) {
         res.status(500).send(error.message);
