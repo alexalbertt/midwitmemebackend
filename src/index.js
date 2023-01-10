@@ -48,6 +48,18 @@ app.get('/tweets', (req, res) => {
   });
 });
 
+// Return last seen tweet
+app.get('/last-seen', (req, res) => {
+  // Retrieve all the tweets from the database
+  client.query('SELECT * FROM tweets ORDER BY id DESC LIMIT 1', (error, results) => {
+    if (error) {
+      res.status(500).send(error.message);
+    } else {
+      res.send(results);
+    }
+  });
+});
+
 // Start the server
 const port = process.env.PORT;
 app.listen(port, () => {
