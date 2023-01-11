@@ -21,12 +21,12 @@ app.get("/", (req, res) => {
 
 app.post('/add-tweet', (req, res) => {
   // Extract the tweet data from the request body
-  const { tweetId, tweetUrl, tweetAuthor, tweetTagAuthor, tweetTagId } = req.body;
+  const { tweetId, tweetUrl, tweetImageUrl, tweetAuthor, tweetTagAuthor, tweetTagId } = req.body;
   console.log("Request body: " + req.body);
-  console.log("Recieved info: TweetID: " + tweetId + " TweetURL: " +tweetUrl + " TweetAuthor: " + tweetAuthor + " TweetTagAuthor: " + tweetTagAuthor + " TweetTagID: " + tweetTagId);
+  console.log("Recieved info: TweetID: " + tweetId + " TweetURL: " +tweetUrl + " tweetImageUrl" + tweetImageUrl + " TweetAuthor: " + tweetAuthor + " TweetTagAuthor: " + tweetTagAuthor + " TweetTagID: " + tweetTagId);
   // Insert the tweet into the database
   client.query(
-    `INSERT INTO "Tweet" ("tweetId", "tweetUrl", "tweetAuthor", "tweetTagAuthor", "tweetTagId", "createdAt") VALUES ('${tweetId}', '${tweetUrl}', '${tweetAuthor}', '${tweetTagAuthor}', '${tweetTagId}', NOW())`,
+    `INSERT INTO "Tweet" ("tweetId", "tweetUrl", "tweetImageUrl", "tweetAuthor", "tweetTagAuthor", "tweetTagId", "createdAt") VALUES ('${tweetId}', '${tweetUrl}', '${tweetImageUrl}', '${tweetAuthor}', '${tweetTagAuthor}', '${tweetTagId}', NOW())`,
     (error, results) => {
       if (error) {
         console.log(error.message);
