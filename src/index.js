@@ -51,7 +51,7 @@ app.get('/tweets', (req, res) => {
 // Return last seen tweet
 app.get('/last-seen', (req, res) => {
   // Retrieve all the tweets from the database
-  client.query('SELECT * FROM Tweet ORDER BY id DESC LIMIT 1', (error, results) => {
+  client.query('SELECT * FROM Tweet ORDER BY tweetTagId DESC LIMIT 1', (error, results) => {
     if (error) {
       res.status(500).send(error.message);
     } else {
