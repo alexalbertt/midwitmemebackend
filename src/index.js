@@ -26,9 +26,10 @@ app.post('/add-tweet', (req, res) => {
   console.log("Recieved info: TweetID: " + tweetId + " TweetURL: " +tweetUrl + " TweetAuthor: " + tweetAuthor + " TweetTagAuthor: " + tweetTagAuthor + " TweetTagID: " + tweetTagId);
   // Insert the tweet into the database
   client.query(
-    `INSERT INTO Tweet (tweetId, tweetUrl, tweetAuthor, tweetTagAuthor, tweetTagId) VALUES ('${tweetId}', '${tweetUrl}', '${tweetAuthor}', '${tweetTagAuthor}', '${tweetTagId}')`,
+    `INSERT INTO Tweet (tweetId, tweetUrl, tweetAuthor, tweetTagAuthor, tweetTagId, createdAt) VALUES ('${tweetId}', '${tweetUrl}', '${tweetAuthor}', '${tweetTagAuthor}', '${tweetTagId}', NOW())`,
     (error, results) => {
       if (error) {
+        console.log(error.message);
         res.status(500).send(error.message);
       } else {
         res.send({ message: 'Tweet added successfully' });
