@@ -26,7 +26,7 @@ app.post('/add-tweet', (req, res) => {
   console.log("Recieved info: TweetID: " + tweetId + " TweetURL: " +tweetUrl + " TweetAuthor: " + tweetAuthor + " TweetTagAuthor: " + tweetTagAuthor + " TweetTagID: " + tweetTagId);
   // Insert the tweet into the database
   client.query(
-    `INSERT INTO tweets (tweetId, tweetUrl, tweetAuthor, tweetTagAuthor, tweetTagId) VALUES ('${tweetId}', '${tweetUrl}', '${tweetAuthor}', '${tweetTagAuthor}', '${tweetTagId}')`,
+    `INSERT INTO Tweet (tweetId, tweetUrl, tweetAuthor, tweetTagAuthor, tweetTagId) VALUES ('${tweetId}', '${tweetUrl}', '${tweetAuthor}', '${tweetTagAuthor}', '${tweetTagId}')`,
     (error, results) => {
       if (error) {
         res.status(500).send(error.message);
@@ -39,7 +39,7 @@ app.post('/add-tweet', (req, res) => {
 
 app.get('/tweets', (req, res) => {
   // Retrieve all the tweets from the database
-  client.query('SELECT * FROM tweets', (error, results) => {
+  client.query('SELECT * FROM Tweet', (error, results) => {
     if (error) {
       res.status(500).send(error.message);
     } else {
@@ -51,7 +51,7 @@ app.get('/tweets', (req, res) => {
 // Return last seen tweet
 app.get('/last-seen', (req, res) => {
   // Retrieve all the tweets from the database
-  client.query('SELECT * FROM tweets ORDER BY id DESC LIMIT 1', (error, results) => {
+  client.query('SELECT * FROM Tweet ORDER BY id DESC LIMIT 1', (error, results) => {
     if (error) {
       res.status(500).send(error.message);
     } else {
