@@ -38,6 +38,19 @@ app.post('/add-tweet', (req, res) => {
   );
 });
 
+// return boolean if tweet exists
+app.get('/tweet-exists/:tweetId', (req, res) => {
+  // Retrieve all the tweets from the database
+  client.query(`SELECT * FROM "Tweet" WHERE "tweetId" = '${req.params.tweetId}'`, (error, results) => {
+    if (error) {
+      res.status(500).send(error.message);
+    } else {
+      res.send(results.rows.length > 0);
+    }
+  });
+});
+  
+
 app.get('/tweets', (req, res) => {
   // Retrieve all the tweets from the database
   client.query('SELECT * FROM "Tweet"', (error, results) => {
